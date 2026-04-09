@@ -1,9 +1,9 @@
 # Executive Memo: FX Exposure Management Strategy
 
-**To:** Chief Financial Officer (CFO)
-**From:** Kaye Talioaga
-**Date:** April 9, 2026
-**Subject:** Managing Foreign Exchange Risk for EUR Receivable — Scenario 4
+**To:** Chief Financial Officer (CFO)   
+**From:** Kaye Talioaga   
+**Date:** April 9, 2026   
+**Subject:** Managing Foreign Exchange Risk for EUR Receivable   
 
 ---
 
