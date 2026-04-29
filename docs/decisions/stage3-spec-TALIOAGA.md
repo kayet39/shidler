@@ -8,8 +8,6 @@
 
 ---
 
----
-
 ## 1. Objective
 
 The company is exposed to foreign exchange risk due to a **foreign-currency receivable (FC_AMT)** that will be settled in the future (**T_DAYS**). Because exchange rates fluctuate, the USD value of this receivable is uncertain and could decrease if the foreign currency depreciates.
