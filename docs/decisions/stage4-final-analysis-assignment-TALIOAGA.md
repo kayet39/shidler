@@ -1,4 +1,4 @@
-# Recommendation Memo: FX Hedging Strategy & Model Framework
+# Recommendation Memo: FX Hedging Strategy, Model Framework, Final Analysis
 
 **To:** Chief Financial Officer (CFO)  
 **From:** Kaye Talioaga  
