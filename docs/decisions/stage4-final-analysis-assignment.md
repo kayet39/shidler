@@ -1,198 +1,224 @@
-# Stage 4 – Final Analysis, Prompt Engineering & Recommendation (10 Points)
+# Recommendation Memo: FX Hedging Strategy & Model Framework
 
-## Goal
-
-Deliver a polished, executive-ready memo summarizing your FX hedge analysis and recommending the best strategy. As part of this deliverable, you will also write a **structured AI prompt** that could regenerate your spreadsheet model — demonstrating your ability to convert domain knowledge into machine-readable instructions.
-
-This stage combines quantitative rigor, interpretation, communication, and AI fluency — exactly what senior finance leaders expect from modern analysts.
-
-**Hint:** Have your LLM generate a draft based on your Stage 2 spreadsheet output and Stage 3 specification, then refine it with your own analysis and judgment. If you don't have AI access, write the analysis directly from your spreadsheet results and submit the prompt as a standalone document.
+**To:** Chief Financial Officer (CFO)  
+**From:** Kaye Talioaga  
+**Date:** May 2026  
+**Subject:** Recommended FX Hedging Strategy and Model Reproducibility Framework    
 
 ---
 
-## Deliverable Requirements (2–4 page `.md` file committed to GitHub)
+## A. Exposure Summary
 
-Must include:
+The company is expecting to receive **€20,000,000 in 360 days**, which exposes it to foreign exchange (FX) risk. Since the receivable is denominated in euros but financial reporting is in USD, the final dollar value depends on the EUR/USD exchange rate at settlement.
 
----
-
-### A. Exposure Summary
-
-Brief restatement:
-- Currency, amount, and timing of the receivable
-- FX risk and consequences for USD cash flows
-- Business context for the hedging decision
+If the euro depreciates, the company will receive fewer USD, negatively impacting cash flow. If the euro appreciates, the company benefits from higher USD proceeds. This uncertainty creates risk for budgeting, forecasting, and financial planning, making hedging strategies necessary to stabilize outcomes.
 
 ---
 
-### B. Summary of Hedge Outcomes
+## B. Summary of Hedge Outcomes
 
-Present your key findings by strategy:
-
-| Strategy | What to Highlight | What to Discuss |
-|----------|------------------|-----------------|
-| **Forward Hedge** | Locked-in USD proceeds | Certainty vs. opportunity cost |
-| **Money Market Hedge** | Synthetic forward via borrow/convert/invest | Parity with forward; liquidity implications |
-| **Put Option** | Floor protection with upside | Premium cost vs. downside protection |
-| **Call Option** | Upside participation | When and why this applies |
-| **No Hedge** | Unhedged USD proceeds at various S_T | Risk exposure baseline |
-
-Focus on **insight rather than computation** — the CFO already has the numbers.
+### Forward Hedge
+- Locked-in USD proceeds: **~$21.87M**
+- Provides full certainty with no variability
+- Eliminates FX risk entirely
+- Trade-off: No upside if EUR appreciates
 
 ---
 
-### C. Sensitivity Interpretation
-
-Explain hedge behavior under:
-- EUR depreciation scenarios
-- EUR appreciation scenarios
-
-Highlight differences in certainty, flexibility, and cost across strategies. Reference your Stage 2 sensitivity table (±5% range).
+### Money Market Hedge
+- USD proceeds: **~$21.87M (nearly identical to forward)**
+- Replicates forward hedge using borrowing and investing
+- Confirms interest rate parity
+- Trade-off: More complex and requires liquidity
 
 ---
 
-### D. Strategic Recommendation
-
-Choose one strategy (or combination):
-- Forward
-- Money Market
-- Put
-- Call
-- Combination
-
-Support with data from your model, risk profile, and business strategy.
+### Put Option Hedge
+- Worst-case: **~$21.40M**
+- Best-case: **~$22.35M**
+- Provides downside protection with upside potential
+- Premium cost: **$380,000**
 
 ---
 
-### E. Executive Justification
-
-Use management-level reasoning:
-- Cash flow stability
-- Budget certainty
-- Liquidity impact
-- Optionality value
-- Premium costs
-- Accounting implications (optional)
+### No Hedge
+- USD proceeds fluctuate based on exchange rate
+- Highest risk exposure
+- No protection against unfavorable movements
 
 ---
 
-### F. Structured AI Prompt (Required Component)
+## C. Sensitivity Interpretation
 
-Write a **1–2 page structured prompt** (as a separate section or appendix) that could instruct an AI to generate your complete FX hedging spreadsheet. Your prompt must include:
-
-1. **Scenario-Specific Variables** — All values explicitly stated: FC_AMT, spot rate, forward rate, interest rates, option strikes, premiums, T_DAYS. AI does not infer missing data.
-
-2. **Named Range Conventions** — Use standardized names matching your Stage 3 spec (e.g., `FC_AMT`, `S0_in`, `F0_in`, `R_USD`, `R_FC`, `K_PUT`, `K_CALL`, `PREM_PUT`, `PREM_CALL`, `T_DAYS`).
-
-3. **Spreadsheet Requirements** — Instruct the AI to produce:
-   - Input section with named ranges
-   - Color coding: **Yellow** = Inputs, **Blue** = Assumptions, **Green** = Formulas, **Gray** = Outputs
-   - Forward hedge, Money Market hedge (3-step), Option hedges (put and call)
-   - Sensitivity table (±5% range)
-   - Verification checks (forward vs. MM parity, formula consistency)
-
-4. **Hierarchical Structure** — Use clear section headers (e.g., `# GOAL`, `# INPUT VARIABLES`, `# MODEL LOGIC`, `# VERIFICATION`, `# EXPORT`).
+### EUR Depreciation Scenario
+- Forward and Money Market hedges perform best due to fixed outcomes
+- Option hedge provides protection but is reduced by premium cost
+- No hedge performs worst due to full exposure
 
 ---
 
-## Prompt Engineering Best Practices
-
-### 1. Avoid Vague Prompts
-
-Example of a bad prompt:
-> "Make me an FX hedging spreadsheet."
-
-Example of a good prompt:
-> "Create an Excel workbook modeling forward, money market, and option hedges for a EUR 4,500,000 receivable using the following market data. Use named ranges matching the convention FC_AMT, S0_in, F0_in..."
-
-### 2. Provide All Variable Values
-
-AI does not infer values. Include every scenario variable explicitly.
-
-### 3. Use Named Ranges Consistently
-
-Never allow the AI to invent its own naming system. Define names in your prompt.
-
-### 4. Specify Formatting Explicitly
-
-Color codes, sections, layout — be explicit.
-
-### 5. Include Context Files from GitHub
-
-This is the most efficient way to use AI for models.
-
-**Options for providing context:**
-1. **Best:** GitHub links to your spec and template files
-2. **Medium:** Upload `.md` or `.xlsx` files directly
-3. **Least:** Copy/paste text manually
+### EUR Appreciation Scenario
+- Forward and Money Market hedges do not benefit from favorable movements
+- Option hedge captures upside beyond strike price
+- No hedge benefits fully but carries risk
 
 ---
 
-## Note on AI Access
-
-If you do not have access to an AI tool capable of generating Excel files, you may:
-1. Submit your structured prompt (Section F) as written.
-2. Submit your Stage 2 model as the primary spreadsheet artifact with a brief note explaining that you would use the prompt to regenerate it.
-
-The prompt itself is the primary deliverable — it demonstrates your ability to convert domain knowledge into machine-readable instructions.
+### Key Insight
+- Forward/MM = Certainty  
+- Option = Flexibility  
+- No Hedge = Risk  
 
 ---
 
-## Extra Credit (2 points): Areas for Further Study & Improvement
+## D. Strategic Recommendation
 
-In 1–2 paragraphs each, discuss **2–3** of the following topics and how they connect to your project:
+The recommended strategy is the **Forward Hedge**.
 
-1. **AI Skills & Automation** — How could AI tools (e.g., Claude Skills, Code Interpreter) pull live market data, regenerate your model on demand, or run Monte Carlo simulations?
-2. **Multi-File Reasoning** — How could AI read your spec, model, and prompt together to maintain consistency, automate rebuilds, or create dashboards?
-3. **GitHub & Version Control** — How does committing specs, models, and prompts to GitHub enable auditable, reproducible model regeneration? Tie this to your Stages 1–3.
-4. **Accounting & Audit Integration** — How do hedge accounting flows (OCI vs. P&L), documentation requirements, and reproducibility connect to this project? How could GitHub serve as audit evidence?
+This approach is preferred because it guarantees approximately **$21.87M**, eliminates FX risk, and does not require an upfront premium. While the option hedge allows for upside potential, the cost of the premium reduces guaranteed proceeds and introduces unnecessary expense if the company prioritizes stability.
 
 ---
 
-## Evaluation
+## E. Executive Justification
 
-| Criterion | Description | Points |
-|-----------|-------------|-------:|
-| Hedge Interpretation | Demonstrates understanding of what each strategy achieves | 2 |
-| Strategic Recommendation | Actionable, data-supported recommendation | 2 |
-| Sensitivity Analysis | Meaningful discussion of outcomes under different scenarios | 1 |
-| Structured AI Prompt | Clear, complete, reproducible prompt with all scenario data | 2 |
-| Professionalism & Communication | Executive-ready, well-structured deliverable | 1 |
-| AI-Generated Output OR Manual Analysis | Working spreadsheet from prompt, or equivalent manual work | 2 |
+From a management perspective, the forward hedge is the strongest option because it provides:
 
----
+- **Cash Flow Stability:** Predictable USD inflows  
+- **Budget Certainty:** Eliminates FX volatility in forecasts  
+- **No Premium Cost:** Unlike options, no upfront payment  
+- **Simplicity:** Easy to implement and communicate  
+- **Full Risk Elimination:** Removes downside exposure entirely  
 
-## Career Relevance
-
-This project builds skills used in:
-
-### Corporate Treasury
-- Exposure management and hedge design
-- Hedge performance testing
-- AI-augmented scenario analysis
-
-### Investment Banking
-- Cross-border deal modeling
-- FX-sensitive valuation adjustments
-
-### FP&A
-- Cash flow forecasting under FX uncertainty
-- Scenario building and budget risk assessment
-
-### Accounting & Audit
-- OCI vs. P&L hedge accounting documentation
-- Hedge effectiveness proof
-- Version-controlled models and audit trails
-
-### Data, Analytics & AI Roles
-- Spec-to-model-to-prompt automation pipeline
-- GitHub collaboration and version control
-- AI-assisted financial modeling and reporting
+Overall, the forward hedge aligns best with a company focused on financial stability and predictable performance.
 
 ---
 
-## Why This Matters
+## F. Structured AI Prompt
 
-This multi-stage journey reflects workflows used at Big 4 accounting firms, corporate treasury teams, investment banks, and consulting firms. You are demonstrating analytical reasoning, automation fluency, model governance, financial decision leadership, and technical communication.
+### # GOAL
+Create an Excel-based FX hedging model that evaluates Forward, Money Market, and Option hedging strategies for a foreign currency receivable.
 
-**This is a portfolio-ready artifact for internships, jobs, and graduate programs.**
+---
+
+### # INPUT VARIABLES (USE NAMED RANGES)
+
+- FC_AMT = 20,000,000  
+- S0_in = 1.0831  
+- F0_in = 1.0935  
+- R_USD = 5.00%  
+- R_FC = 4.00%  
+- K_PUT = 1.09  
+- PREM_PUT = 0.019  
+- T_DAYS = 360  
+
+---
+
+### # SPREADSHEET STRUCTURE
+
+Sections:
+1. Inputs (Yellow cells)  
+2. Assumptions (Blue cells)  
+3. Calculations (Green cells)  
+4. Outputs (Gray cells)  
+
+---
+
+### # MODEL LOGIC
+
+#### Forward Hedge
+USD_Forward = FC_AMT * F0_in  
+
+---
+
+#### Money Market Hedge
+
+Step 1:  
+PV_EUR = FC_AMT / (1 + R_FC * (T_DAYS/360))  
+
+Step 2:  
+USD_Converted = PV_EUR * S0_in  
+
+Step 3:  
+USD_Final = USD_Converted * (1 + R_USD * (T_DAYS/360))  
+
+---
+
+#### Put Option Hedge
+
+Premium = FC_AMT * PREM_PUT  
+
+USD_Option = MAX(K_PUT, S_T) * FC_AMT - Premium  
+
+---
+
+#### No Hedge
+
+USD_Unhedged = FC_AMT * S_T  
+
+---
+
+### # SENSITIVITY TABLE
+
+- Vary S_T from 0.95 × S0_in to 1.05 × S0_in  
+- Use 1% increments  
+- Calculate outcomes for:
+  - Forward (constant)  
+  - Money Market (constant)  
+  - Option (variable)  
+  - No Hedge (variable)  
+
+---
+
+### # VERIFICATION
+
+- Confirm Forward ≈ Money Market (interest rate parity)  
+- Ensure formula consistency  
+- Validate option premium deduction  
+
+---
+
+### # OUTPUTS
+
+- Summary table of USD proceeds  
+- Sensitivity table  
+- Comparison chart:
+  - X-axis: Exchange rate  
+  - Y-axis: USD proceeds  
+  - Lines for each strategy  
+
+---
+
+### # EXPORT
+
+- Excel workbook  
+- Clearly labeled sections  
+- Named ranges applied  
+- All formulas visible  
+
+---
+
+## Extra Credit – Areas for Further Study & Improvement
+
+### AI Skills & Automation
+
+AI tools could automate both data input and analysis by pulling live exchange rate data and updating the model in real time. This would make the model more relevant for real-world decision-making instead of relying on static assumptions.
+
+Additionally, AI could run Monte Carlo simulations to generate thousands of exchange rate scenarios, providing deeper insight into risk beyond a simple ±5% sensitivity analysis. This would help quantify probabilities and improve decision-making.
+
+---
+
+### Multi-File Reasoning
+
+This project includes multiple components: the specification, the Excel model, and the structured prompt. AI can connect all of these to ensure consistency across files.
+
+For example, AI could verify whether the Excel model follows the specification correctly or regenerate the entire model using the structured prompt. This improves reliability and reduces the risk of errors.
+
+---
+
+### GitHub & Version Control
+
+Using GitHub allows for better organization, transparency, and reproducibility. Each stage of the project is tracked, making it easy to see changes over time and revert to previous versions if needed.
+
+This is especially important in finance, where models are frequently updated and require auditability. GitHub also supports collaboration, allowing multiple users to work on the same project while maintaining structure and control.
+
+---
